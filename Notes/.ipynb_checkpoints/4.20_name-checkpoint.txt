@@ -1,0 +1,12 @@
+4.20 Meeting:
+
+    - Idea: Use frequency to eliminate irrelevant titles
+        - For some titles, we want the lower n-gram string: eg. 南徐州刺史, instead of 南徐州刺史贵阳王修范
+        - For some titles, we want the middle n-gram string: eg. 同中书门下平章事, instead of 同中书门下 or 同中书门下平章事王修范
+        
+    - Calculate Frequency ratios:
+        - ratio > 1: 保留小n
+        - ratio = 1 (around 1): 保留中等n
+        
+    - Start from n = 9, calculate frequency ratio each time to a larger n (n=9 with n=10), then process and filter the data, 
+      and then start from n=8 with (n=9, 10 combination), so on so forth.

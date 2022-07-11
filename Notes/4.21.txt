@@ -1,0 +1,39 @@
+Algorithm:
+    1. For a given n-gram list (n >= 5), calculate each string's frequency ratio with the (n-1) gram list with titles in the n-gram list:
+        - if frequency ratio exactly equals to one : compare whether smaller n is a substring with larger n (n-1 character same) match
+        - if frequency ratio greater than one: compare substring, preserve little n
+        - if frequency ratio around one: preserve larger n (problem: 河南镇抚使：2   河南镇抚使翟：2，会保留后者)
+        
+- 用这个算法之后，会得到官职或者官职加人名。这时候用后两个字和CBDB官名表对比，就可以摘除掉上面的问题
+        
+Algorithm:
+    1. Iterate through the titles list, compare each string with the next string their frequency ratios:
+       - if string not empty:
+            - if fr > 1:
+                - if length of i > length of i+n (1< =n < len(titles)): pass, because if string with greater length has
+                  larger frequency than smaller string, that implies the two strings are completely irrelevant.
+                - if length of i < length of i+n : if i is a substring of i+n, then preserve i: since i+n may contain 
+                  other meaningless strings or name
+                - if length of i == length of i+n: pass: most likely irrelevant
+            - if fr == 1:
+                - len i == len i+n : pass
+                - len i < len i+n : compare whether i is a substring of i+n, if it is, then preserve i+n
+                - len i > len i+n : compare substring, preserve i
+            - if fr < 1:
+                - len i == len i+n : pass
+                - len i < len i+n : ... reverse of fr > 1
+    2. Note: compare rate also need to compare its scale (low ngram / high ngram): i.e 80 / 2 = 40 > 1, 10 / 5 = 2 > 1. 
+       Two ratios greater than 1, but 10/5=2 one, low ngram may contain less information:
+           - eg. 江东转运：10
+                 江东转运判官：5
+                 江东转运副使：2
+                 this case needs to preserve freq 5, 2
+
+江东安抚制置大使
+
+问题：
+    - 宁远军节度使 ： 9
+    - 宁远军节度副使 ： 3
+    - 宁远军节度副 ： 3
+    - 宁远军节度 ： 13
+    
