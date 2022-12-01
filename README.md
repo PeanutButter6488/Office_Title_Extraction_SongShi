@@ -2,7 +2,7 @@
 
 Name: Ding Zhang
 
-Duration: 2021.12 - 2022.7
+Duration: 2021.12 - Present
 
 Instructor: [Prof.Song Chen](https://www.bucknell.edu/fac-staff/song-chen)
 
